@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #f4f4f4; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    to top,
+    rgb(143, 153, 170),
+    #e9ecef
+  ); /* Adjust colors as needed */
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 80px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Key line for centering */
+  max-width: 350px; /* Optional: Set a maximum width */
+
+  display: flex;
+  flex: 1;
+  flex-direction: column; /* Arrange elements in a column */
+  align-items: center; /* Center items horizontally and vertically */
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+button {
+  /* ... Your existing button styles ... */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button {
+  background-color: #1d1d1d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 15px; /* Add margin above the button */
+  margin: 0 auto; /* Center buttons horizontally and vertically */
+}
+
+button:hover {
+  border-style: solid;
+  animation: slideIn 0.5s ease-in-out forwards;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  border-color: #1d1d1d;
+  border-width: 5px 5px 5px 10px;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(-5deg);
+  }
+  75% {
+    transform: rotateZ(5deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideIn {
+  100% {
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
