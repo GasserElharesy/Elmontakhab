@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Login | NGO</title>
+    <title>Sign up | NGO</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="login-container">
-      <h1>Login</h1>
+    <div class="register-container">
+      <h1>Sign up</h1>
       <form action="POST">
         <label for="email">Email</label><br />
         <input
@@ -25,10 +25,12 @@
           placeholder="Enter your password"
           required
         /><br /><br />
-
-        <button id="login-container-login-button" type="submit">Login</button>
-        <button id="login-container-signup-button" type="button">
-          Sign up
+        <p><i>Who are you?</i></p>
+        <input type="radio" name="radio" value="donor" required />I wish to
+        donate <input type="radio" name="radio" value="recipient" required /> I
+        wish to receive donations<br /><br />
+        <button id="register-container-create-account-button" type="submit">
+          Create account!
         </button>
       </form>
     </div>
