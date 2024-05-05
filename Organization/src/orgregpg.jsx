@@ -1,5 +1,5 @@
 // Corrected file name casing
-import GenderPicker from "./genderpicker"; // Corrected file name casing
+import GenderPicker from "./GenderPicker"; // Corrected file name casing
 import FileUpload from "./FileUpload"; // Assuming FileUpload.jsx is the name of your component file
 
 export default function orgregpg() {
