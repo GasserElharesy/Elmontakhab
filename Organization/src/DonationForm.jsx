@@ -1,67 +1,69 @@
-import { useState } from "react";
+import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
+import DonationForm from "./DonationForm";
+import NotificationComponent from "./NotificationComponent";
+import FulfilledPostsComponent from "./FulfilledPostsComponent";
 
-const DonationForm = () => {
-  // State to hold the form data
-  const [formData, setFormData] = useState({
-    category: "",
-    details: "",
-  });
+const Navigation = () => {
+  const navigate = useNavigate();
 
-  // Handle change in form inputs
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Submit the form data for approval
-    console.log("Submitting donation post:", formData);
-    // Here you would typically send the formData to your backend API for processing
-
-    // Reset form data after submission
-    setFormData({
-      category: "",
-      details: "",
-    });
+  const handleLogout = () => {
+    // Add logic to handle logout, such as clearing session, state, etc.
+    // For now, let's just navigate to the login page.
+    navigate("/login");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Enter Donation Details</h2>
-      <div>
-        <label htmlFor="category">Item Category:</label>
-        <select
-          name="category"
-          id="category"
-          value={formData.category}
-          onChange={handleChange}
-        >
-          <option value="">Select a category</option>
-          <option value="clothes">Clothes</option>
-          <option value="food">Food</option>
-          <option value="books">Books</option>
-          <option value="electronics">Electronics</option>
-          {/* Add more categories as needed */}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="details">Details:</label>
-        <textarea
-          name="details"
-          id="details"
-          value={formData.details}
-          onChange={handleChange}
-          rows="4"
-        ></textarea>
-      </div>
-      <button type="submit">Submit for Approval</button>
-    </form>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/DonationForm">Request Donation</NavLink>
+          </li>
+          <li>
+            <NavLink to="/notifications">Receive Notifications</NavLink>
+          </li>
+          <li>
+            <NavLink to="/fulfilled-posts">View Fulfilled Posts</NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogout}>Log Out</button>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<NavigationMenu />} />
+        <Route path="/DonationForm" element={<DonationForm />} /> {/* Render DonationForm component here */}
+        <Route path="/notifications" element={<NotificationComponent />} />
+        <Route path="/fulfilled-posts" element={<FulfilledPostsComponent />} />
+      </Routes>
+    </div>
   );
 };
 
-export default DonationForm;
+const NavigationMenu = () => {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    // Redirect to the navigation menu
+    navigate("/");
+  };
+
+  return (
+    <div>
+      <h1>Navigation Menu</h1>
+      <ul>
+        <li>
+          <button onClick={handleHomeClick}>Home</button>
+        </li>
+        {/* Add other menu items as needed */}
+      </ul>
+    </div>
+  );
+};
+
+export default Navigation;

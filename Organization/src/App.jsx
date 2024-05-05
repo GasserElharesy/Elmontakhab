@@ -1,25 +1,18 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Login";
 import Navigation from "./Navigation";
-import LoginPage from "./Loginpage";
+import OrgRegPage from "./OrgRegPAge";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              {" "}
-              <Navigation />
-              <LoginPage></LoginPage>
-            </>
-          }
-        ></Route>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/navigation" element={<Navigation />} />
+        <Route path="/register" element={<OrgRegPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

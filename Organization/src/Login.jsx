@@ -1,30 +1,51 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 
-function LoginPage() {
-  const [role, setRole] = useState(""); // To store the role selected by the user
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Use useNavigate hook
+
+  const users = [
+    { username: "user1", password: "pass1" },
+    { username: "user2", password: "pass2" },
+  ];
 
   const handleLogin = () => {
-    // Here you would normally send a request to the backend
-    // But since there's no backend, we'll just console.log for demonstration
-    console.log(`Logged in as ${role}`);
-    // Redirect to a different page or change the state to indicate successful login
+    const user = users.find(
+      (user) => user.username === username && user.password === password
+    );
+    if (user) {
+      navigate("/Navigation"); // Use navigate instead of history.push
+    } else {
+      alert("Invalid username or password!");
+    }
   };
 
   return (
-    <div className="login-page">
-      <h2>Login as:</h2>
+    <div>
+      <h2>Login Page</h2>
       <div>
-        <button onClick={() => setRole("Donor")}>Donor</button>
-        <button onClick={() => setRole("Organization")}>Organization</button>
+        <label>Username:</label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
-      {role && (
-        <div>
-          <p>You are logging in as a {role}. Is this correct?</p>
-          <button onClick={handleLogin}>Yes, log in</button>
-        </div>
-      )}
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button onClick={handleLogin}>Login</button>
+      <button onClick={() => navigate("/register")}>Register</button>{" "}
+      {/* Use navigate here as well */}
     </div>
   );
-}
+};
 
-export default LoginPage;
+export default Login;
