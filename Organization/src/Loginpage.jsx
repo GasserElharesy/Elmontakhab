@@ -1,47 +1,49 @@
-import  { useState } from 'react';
-import orgregpg from './orgregpg';
-const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+// src/LoginPage.js
 
-  const handleLogin = (e) => {
-    e.preventDefault(); // Prevents form submission
-    // Here you can add your login logic
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Reset fields after logging in
-    setEmail('');
-    setPassword('');
+import { useState } from "react";
+
+function LoginPage() {
+  const [type, setType] = useState("donor");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your login logic here
+    console.log(`Logging in as ${type} with email: ${email}`);
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
+    <div>
+      <h1>Login Page</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Type:
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="donor">Donor</option>
+            <option value="organization">Organization</option>
+          </select>
+        </label>
+        <label>
+          Email:
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
-        </div>
-        <div>
-          <label>Password:</label>
+        </label>
+        <label>
+          Password:
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
-        </div>
+        </label>
         <button type="submit">Login</button>
-
-        <button onClick={orgregpg} type="register">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default LoginPage;

@@ -1,9 +1,6 @@
-import "./App.css";
-
-import "./App.css";
 import { useState } from "react";
 
-function App() {
+function LoginPage() {
   const [role, setRole] = useState(""); // To store the role selected by the user
 
   const handleLogin = () => {
@@ -30,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
