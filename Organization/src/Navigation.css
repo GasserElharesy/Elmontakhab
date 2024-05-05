@@ -1,0 +1,28 @@
+/* Navigation.css */
+
+/* Navigation.css */
+
+.navbar {
+  background-color: black; /* Change to black */
+  padding: 10px 20px;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: inline;
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #ffcc00; /* Change color on hover */
+}
