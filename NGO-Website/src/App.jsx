@@ -1,16 +1,18 @@
 import "./App.css";
-import Login from "./Pages/Login/Login.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RequestCard from "./Pages/Donor/RequestBrowserPage/Components/RequestCard/RequestCard.jsx";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login username="demon.com" password="pass"/>}>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <RequestCard
+        type="Winter clothes!"
+        description="We want winter clothes or jackets that are made of wool"
+        tags={{
+          size: "large",
+          color: "red",
+          material: "cotton",
+        }}
+      />
     </>
   );
 }
