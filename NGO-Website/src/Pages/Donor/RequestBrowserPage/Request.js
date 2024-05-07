@@ -8,11 +8,16 @@ export const TYPE_OF_REQUESTS = {
 
 export class Request {
   isClaimed = false;
-  constructor(id, type, description, tags) {
+  constructor(id, type, description, tags, quantity) {
+    this.quantity = quantity;
     this.id = id;
     this.type = type;
     this.description = description;
     this.tags = tags;
+  }
+
+  getQuantity() {
+    return this.quantity;
   }
 
   getType() {
