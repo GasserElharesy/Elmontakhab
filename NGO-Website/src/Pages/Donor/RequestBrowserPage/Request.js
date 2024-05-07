@@ -48,7 +48,16 @@ export class Request {
   claim() {
     this.isClaimed = true;
   }
+
   unClaim() {
     this.isClaimed = false;
+  }
+
+  isClaimed() {
+    return this.isClaimed;
+  }
+
+  setClaim(value) {
+    this.isClaimed = value;
   }
 }

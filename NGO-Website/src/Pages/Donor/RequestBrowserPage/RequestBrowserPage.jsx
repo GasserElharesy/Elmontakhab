@@ -47,14 +47,6 @@ function RequestBrowserPage() {
     });
     setFilteredRequests(newFilteredRequests);
   };
-  const handelOnClaim = (requestID) => {
-    console.log(requestID);
-    const request = listOfRequests.find(
-      (request) => request.getId === requestID
-    );
-    request.claim();
-    console.log(request.isClaimed);
-  };
 
   return (
     <>
@@ -64,9 +56,8 @@ function RequestBrowserPage() {
       <div className="request-browser-page-container">
         {filteredRequests.map((request) => (
           <RequestCard
-            key={request.getId} // Important for React list rendering
+            key={request.getId()} // Important for React list rendering
             request={request}
-            onClaim={() => handelOnClaim(request.getId)}
           />
         ))}
       </div>
