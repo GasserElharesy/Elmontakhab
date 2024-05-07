@@ -7,22 +7,28 @@ export const TYPE_OF_REQUESTS = {
 };
 
 export class Request {
-  constructor(type, description, tags) {
+  isClaimed = false;
+  constructor(id, type, description, tags) {
+    this.id = id;
     this.type = type;
     this.description = description;
     this.tags = tags;
   }
 
   getType() {
-    return this._type;
+    return this.type;
   }
 
   getDescription() {
-    return this._description;
+    return this.description;
   }
 
   getTags() {
-    return this._tags;
+    return this.tags;
+  }
+
+  getId() {
+    return this.id;
   }
 
   hasTag = (value) => {
@@ -33,4 +39,11 @@ export class Request {
     }
     return false;
   };
+
+  claim() {
+    this.isClaimed = true;
+  }
+  unClaim() {
+    this.isClaimed = false;
+  }
 }
