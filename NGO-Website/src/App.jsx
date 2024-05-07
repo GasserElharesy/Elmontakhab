@@ -1,18 +1,10 @@
-import "./App.css";
-import RequestCard from "./Pages/Donor/RequestBrowserPage/Components/RequestCard/RequestCard.jsx";
+// import "./App.css";
+import RequestBrowserPage from "./Pages/Donor/RequestBrowserPage/RequestBrowserPage.jsx";
 
 function App() {
   return (
     <>
-      <RequestCard
-        type="Winter clothes!"
-        description="We want winter clothes or jackets that are made of wool"
-        tags={{
-          size: "large",
-          color: "red",
-          material: "cotton",
-        }}
-      />
+     <RequestBrowserPage/>
     </>
   );
 }
