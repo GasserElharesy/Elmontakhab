@@ -1,69 +1,64 @@
-import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
-import DonationForm from "./DonationForm";
-import NotificationComponent from "./NotificationComponent";
-import FulfilledPostsComponent from "./FulfilledPostsComponent";
 
-const Navigation = () => {
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Add logic to handle logout, such as clearing session, state, etc.
-    // For now, let's just navigate to the login page.
-    navigate("/login");
+import { useState } from "react";
+
+const DonationForm = () => {
+  // State for form inputs
+  const [category, setCategory] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [expiryDate, setExpiryDate] = useState("");
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you can submit the form data to your backend or handle it as needed
+    console.log("Form submitted:", { category, itemName, itemDescription, quantity, expiryDate });
+    // Clear form fields after submission
+    setCategory("");
+    setItemName("");
+    setItemDescription("");
+    setQuantity(1);
+    setExpiryDate("");
   };
 
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/" end>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/DonationForm">Request Donation</NavLink>
-          </li>
-          <li>
-            <NavLink to="/notifications">Receive Notifications</NavLink>
-          </li>
-          <li>
-            <NavLink to="/fulfilled-posts">View Fulfilled Posts</NavLink>
-          </li>
-          <li>
-            <button onClick={handleLogout}>Log Out</button>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<NavigationMenu />} />
-        <Route path="/DonationForm" element={<DonationForm />} /> {/* Render DonationForm component here */}
-        <Route path="/notifications" element={<NotificationComponent />} />
-        <Route path="/fulfilled-posts" element={<FulfilledPostsComponent />} />
-      </Routes>
+      <h2>Create Donation Post</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Category:</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Select category</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Toys">Toys</option>
+            <option value="Food">Food</option>
+            <option value="Medical Supplies">Medical Supplies</option>
+            <option value="School Supplies">School Supplies</option>
+            <option value="Blood Donations">Blood Donations</option>
+          </select>
+        </div>
+        <div>
+          <label>Item Name:</label>
+          <input type="text" value={itemName} onChange={(e) => setItemName(e.target.value)} />
+        </div>
+        <div>
+          <label>Item Description:</label>
+          <textarea value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} />
+        </div>
+        <div>
+          <label>Quantity:</label>
+          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+        </div>
+        <div>
+          <label>Expiry Date:</label>
+          <input type="date" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
 
-const NavigationMenu = () => {
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    // Redirect to the navigation menu
-    navigate("/");
-  };
-
-  return (
-    <div>
-      <h1>Navigation Menu</h1>
-      <ul>
-        <li>
-          <button onClick={handleHomeClick}>Home</button>
-        </li>
-        {/* Add other menu items as needed */}
-      </ul>
-    </div>
-  );
-};
-
-export default Navigation;
+export default DonationForm;
