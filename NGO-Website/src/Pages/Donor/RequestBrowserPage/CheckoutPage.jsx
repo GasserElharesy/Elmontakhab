@@ -24,6 +24,7 @@ function CheckoutPage({ claimedRequests }) { // Receive claimed requests as prop
                     <li key={index}>{tag}</li>
                   ))}
                 </ul>
+                <p>Quantity: {request.quantity}</p>
               </div>
               <div className="status">Status: {checkoutStatus}</div>
               <div className="map-container">
