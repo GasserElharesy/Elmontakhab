@@ -1,66 +1,62 @@
-import React, { useState } from "react";
-import { Request } from "./Request";
-import { TYPE_OF_REQUESTS } from "./Request";
-import FilterBar from "./FilterBar";
-import RequestCard from "./RequestCard";
+import { useState } from "react";
+import { data } from "./data.js";
+import Request from "./Request.jsx";
+
 function RequestBrowserPage() {
-  const listOfRequests = [
-    new Request(1, TYPE_OF_REQUESTS.food, "I need food", ["food"], 34),
-    new Request(
-      2,
-      TYPE_OF_REQUESTS.clothing,
-      "I need clothing for an adult",
-      ["clothing", "adult", "large"],
-      20
-    ),
-    new Request(
-      3,
-      TYPE_OF_REQUESTS.clothing,
-      "I need clothing for winter",
-      ["clothing", "winter", "small", "child"],
-      12
-    ),
-    new Request(
-      4,
-      TYPE_OF_REQUESTS.school_supplies,
-      "I need school supplies",
-      ["school_supplies"],
-      7
-    ),
-    new Request(
-      5,
-      TYPE_OF_REQUESTS.blood_donation,
-      "I need blood donation",
-      ["blood_donation", "type_a"],
-      2
-    ),
-    new Request(6, TYPE_OF_REQUESTS.probono, "I need probono", ["medical"], 22),
-  ];
+  const [type, setType] = useState("ALL");
+  const [selectedTag, setSelectedTag] = useState("");
 
-  const [filteredRequests, setFilteredRequests] = useState(listOfRequests);
-
-  const filterRequests = (type, tag) => {
-    const newFilteredRequests = listOfRequests.filter((req) => {
-      const matchesType = type === "" || req.type === type;
-      const matchesTag = tag === "" || req.hasTag(tag);
-      return matchesType && matchesTag;
-    });
-    setFilteredRequests(newFilteredRequests);
+  const getUniqueTagsByType = (type) => {
+    const tags = data
+      .filter((item) => type === "ALL" || item.type === type)
+      .flatMap((obj) => obj.tags);
+    return [...new Set(tags)]; // Return an array of unique tags
   };
+
+  const allTags = getUniqueTagsByType(type); // Get tags based on currently selected type
 
   return (
     <>
-      <div>
-        <FilterBar requests={listOfRequests} onFilterChange={filterRequests} />
-      </div>
-      <div className="request-browser-page-container">
-        {filteredRequests.map((request) => (
-          <RequestCard
-            key={request.getId()} // Important for React list rendering
-            request={request}
-          />
+      <label htmlFor="type-select">TYPE: </label>
+      <select
+        name=""
+        id="type-select"
+        onChange={(e) => setType(e.target.value)}
+      >
+        <option value="ALL">-- Select Type --</option>
+        <option value="MEDICAL_SUPPLIES">MEDICAL_SUPPLIES</option>
+        <option value="FOOD">FOOD</option>
+        <option value="SCHOOL_SUPPLIES">SCHOOL_SUPPLIES</option>
+        <option value="PROBONO">PROBONO</option>
+        <option value="CLOTHING">CLOTHING</option>
+        <option value="BLOOD_DONATION">BLOOD_DONATION</option>
+      </select>
+      <label htmlFor="tag-select">TAG: </label>
+      <select
+        name=""
+        id="tag-select"
+        onChange={(e) => setSelectedTag(e.target.value)}
+      >
+        <option value="">-- Select a Tag --</option>
+        {allTags.map((tag, index) => (
+          <option key={index} value={tag}>
+            {tag}
+          </option>
         ))}
-      </div>
+      </select>
+      {data
+        .filter((item) => {
+          if (type === "ALL") {
+            return true;
+          }
+          return (
+            item.type === type &&
+            (!selectedTag || item.tags.includes(selectedTag))
+          );
+        })
+        .map((item, index) => (
+          <Request key={index} {...item} />
+        ))}
     </>
   );
 }
