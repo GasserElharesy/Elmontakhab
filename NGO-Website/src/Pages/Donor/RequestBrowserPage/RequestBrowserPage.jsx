@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { data } from "./data.js";
 import Request from "./Request.jsx";
+import { useNavigate } from "react-router-dom";
 
-function RequestBrowserPage() {
+function RequestBrowserPage(props) {
   const [type, setType] = useState("ALL");
   const [selectedTag, setSelectedTag] = useState("");
+
+  const navigate = useNavigate();
 
   const getUniqueTagsByType = (type) => {
     const tags = data
@@ -21,8 +24,9 @@ function RequestBrowserPage() {
 
   const handleDonate = () => {
     console.log("Donating claimed requests:", claimedRequests);
-    // TODO: Send to checkout page
     setClaimedRequests([]); // Clear claimed requests after donation
+    props.onCheckOut(claimedRequests);
+    navigate("/checkout"); // Redirect to the checkout page
   };
 
   const allTags = getUniqueTagsByType(type); // Get tags based on currently selected type
