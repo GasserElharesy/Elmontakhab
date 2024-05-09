@@ -6,6 +6,8 @@ function Request(props) {
 
   const handleOnClaim = () => {
     setClaimStatus(!claimStatus);
+    props.onClaim(); // Call the function passed from the parent
+
   };
 
   return (

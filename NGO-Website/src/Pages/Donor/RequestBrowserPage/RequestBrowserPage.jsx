@@ -13,6 +13,18 @@ function RequestBrowserPage() {
     return [...new Set(tags)]; // Return an array of unique tags
   };
 
+  const [claimedRequests, setClaimedRequests] = useState([]); // Array to store claimed requests
+
+  const handleClaim = (request) => {
+    setClaimedRequests([...claimedRequests, request]);
+  };
+
+  const handleDonate = () => {
+    console.log("Donating claimed requests:", claimedRequests);
+    // TODO: Send to checkout page
+    setClaimedRequests([]); // Clear claimed requests after donation
+  };
+
   const allTags = getUniqueTagsByType(type); // Get tags based on currently selected type
 
   return (
@@ -44,18 +56,18 @@ function RequestBrowserPage() {
           </option>
         ))}
       </select>
+      <button onClick={handleDonate}>Donate Claimed</button>
       {data
         .filter((item) => {
-          if (type === "ALL") {
-            return true;
-          }
           return (
-            item.type === type &&
-            (!selectedTag || item.tags.includes(selectedTag))
+            // Return true if any conditions match
+            type === "ALL" || // Match all if type state is "ALL"
+            (item.type === type && // Match items only if type states matches
+              (!selectedTag || item.tags.includes(selectedTag)))
           );
         })
         .map((item, index) => (
-          <Request key={index} {...item} />
+          <Request key={index} {...item} onClaim={() => handleClaim(item)} />
         ))}
     </>
   );
