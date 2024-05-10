@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./OrgRegPage.css"; // Import CSS file
 
 // GenderPicker component for selecting gender
 const GenderPicker = () => {
@@ -26,9 +27,7 @@ const FileUpload = () => {
     console.log("File uploaded:", e.target.files[0]);
   };
 
-  return (
-    <input type="file" onChange={handleFileChange} />
-  );
+  return <input type="file" onChange={handleFileChange} />;
 };
 
 const OrgRegPg = () => {
@@ -42,14 +41,14 @@ const OrgRegPg = () => {
     organizationName: "",
     organizationAddress: "",
     organizationArea: "",
-    organizationGovernate: ""
+    organizationGovernate: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -68,113 +67,116 @@ const OrgRegPg = () => {
       organizationName: "",
       organizationAddress: "",
       organizationArea: "",
-      organizationGovernate: ""
+      organizationGovernate: "",
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="gender">Gender:</label>
-        <GenderPicker />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="contactNumber">Contact Number:</label>
-        <input
-          type="text"
-          id="contactNumber"
-          name="contactNumber"
-          value={formData.contactNumber}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="organizationName">Organization Name:</label>
-        <input
-          type="text"
-          id="organizationName"
-          name="organizationName"
-          value={formData.organizationName}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="organizationAddress">Organization Address:</label>
-        <input
-          type="text"
-          id="organizationAddress"
-          name="organizationAddress"
-          value={formData.organizationAddress}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="organizationArea">Organization Area:</label>
-        <input
-          type="text"
-          id="organizationArea"
-          name="organizationArea"
-          value={formData.organizationArea}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="organizationGovernate">Organization Governate:</label>
-        <input
-          type="text"
-          id="organizationGovernate"
-          name="organizationGovernate"
-          value={formData.organizationGovernate}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="organizationDocuments">Organization Documents:</label>
-        <FileUpload />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="container">
+      <h2 className="heading">Organization Registration</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <div>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="gender">Gender:</label>
+          <GenderPicker />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="contactNumber">Contact Number:</label>
+          <input
+            type="text"
+            id="contactNumber"
+            name="contactNumber"
+            value={formData.contactNumber}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="organizationName">Organization Name:</label>
+          <input
+            type="text"
+            id="organizationName"
+            name="organizationName"
+            value={formData.organizationName}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="organizationAddress">Organization Address:</label>
+          <input
+            type="text"
+            id="organizationAddress"
+            name="organizationAddress"
+            value={formData.organizationAddress}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="organizationArea">Organization Area:</label>
+          <input
+            type="text"
+            id="organizationArea"
+            name="organizationArea"
+            value={formData.organizationArea}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="organizationGovernate">Organization Governate:</label>
+          <input
+            type="text"
+            id="organizationGovernate"
+            name="organizationGovernate"
+            value={formData.organizationGovernate}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="organizationDocuments">Organization Documents:</label>
+          <FileUpload />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
-}
+};
 
 export default OrgRegPg;

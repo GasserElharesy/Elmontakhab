@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./FulfilledPostsComponent.css";
 
 export default function FulfilledPostsComponent() {
   const [posts, setPosts] = useState([
@@ -31,42 +32,44 @@ export default function FulfilledPostsComponent() {
   };
 
   return (
-    <div>
-      <h2>Fulfilled Posts</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Post ID</th>
-            <th>Donor Name</th>
-            <th>Donor Type</th>
-            <th>Post Location</th>
-            <th>Post Type</th>
-            <th>Post Status</th>
-            <th>Donation Date</th>
-            <th>Donor Contact</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.map((post) => (
-            <tr key={post.id}>
-              <td>{post.id}</td>
-              <td>{post.donorName}</td>
-              <td>{post.donorType}</td>
-              <td>{post.postLocation}</td>
-              <td>{post.postType}</td>
-              <td>{post.postStatus}</td>
-              <td>{post.donationDate}</td>
-              <td>{post.donorContact}</td>
-              <td>
-                <button onClick={() => handleDeletePost(post.id)}>
-                  Delete
-                </button>
-              </td>
+    <div className="login-container">
+      <h1 className="login-title">Fulfilled Posts</h1>
+      <div className="login-content">
+        <table className="login-table">
+          <thead>
+            <tr>
+              <th>Post ID</th>
+              <th>Donor Name</th>
+              <th>Donor Type</th>
+              <th>Post Location</th>
+              <th>Post Type</th>
+              <th>Post Status</th>
+              <th>Donation Date</th>
+              <th>Donor Contact</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr key={post.id}>
+                <td>{post.id}</td>
+                <td>{post.donorName}</td>
+                <td>{post.donorType}</td>
+                <td>{post.postLocation}</td>
+                <td>{post.postType}</td>
+                <td>{post.postStatus}</td>
+                <td>{post.donationDate}</td>
+                <td>{post.donorContact}</td>
+                <td>
+                  <button className="login-btn" onClick={() => handleDeletePost(post.id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

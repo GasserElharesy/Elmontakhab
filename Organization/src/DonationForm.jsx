@@ -1,61 +1,110 @@
-
-
-import { useState } from "react";
+import  { useState } from "react";
+import "./DonationForm.css"; // Import CSS file
 
 const DonationForm = () => {
-  // State for form inputs
-  const [category, setCategory] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [itemDescription, setItemDescription] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [expiryDate, setExpiryDate] = useState("");
+  const [formData, setFormData] = useState({
+    category: "",
+    itemName: "",
+    itemDescription: "",
+    quantity: 1,
+    expiryDate: "",
+    contactInfo: ""
+  });
 
-  // Function to handle form submission
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can submit the form data to your backend or handle it as needed
-    console.log("Form submitted:", { category, itemName, itemDescription, quantity, expiryDate });
-    // Clear form fields after submission
-    setCategory("");
-    setItemName("");
-    setItemDescription("");
-    setQuantity(1);
-    setExpiryDate("");
+    // Here you can handle form submission, e.g., send data to backend
+    console.log(formData);
+    // Reset the form after submission
+    setFormData({
+      category: "",
+      itemName: "",
+      itemDescription: "",
+      quantity: 1,
+      date: "",
+      contactInfo: ""
+    });
   };
 
   return (
-    <div>
-      <h2>Create Donation Post</h2>
+    <div className="form-container">
+      <h2>Create Donation Post for Organizations</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Category:</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select category</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Toys">Toys</option>
-            <option value="Food">Food</option>
-            <option value="Medical Supplies">Medical Supplies</option>
-            <option value="School Supplies">School Supplies</option>
-            <option value="Blood Donations">Blood Donations</option>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select a category</option>
+            <option value="clothes">Clothes</option>
+            <option value="toys">Toys</option>
+            <option value="food">Food</option>
+            <option value="medical supplies">Medical Supplies</option>
+            <option value="school supplies">School Supplies</option>
+            <option value="blood donations">Blood Donations</option>
           </select>
         </div>
         <div>
           <label>Item Name:</label>
-          <input type="text" value={itemName} onChange={(e) => setItemName(e.target.value)} />
+          <input
+            type="text"
+            name="itemName"
+            value={formData.itemName}
+            onChange={handleInputChange}
+            required
+          />
         </div>
         <div>
           <label>Item Description:</label>
-          <textarea value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} />
+          <textarea
+            name="itemDescription"
+            value={formData.itemDescription}
+            onChange={handleInputChange}
+            required
+          />
         </div>
         <div>
           <label>Quantity:</label>
-          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <input
+            type="number"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleInputChange}
+            min="1"
+            required
+          />
         </div>
         <div>
           <label>Expiry Date:</label>
-          <input type="date" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
+          <input
+            type="date"
+            name="expiryDate"
+            value={formData.expiryDate}
+            onChange={handleInputChange}
+          />
         </div>
-        <button type="submit">Submit</button>
+        <div>
+          <label>Contact Info:</label>
+          <input
+            type="text"
+            name="contactInfo"
+            value={formData.contactInfo}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <button type="submit">Create Donation Post</button>
       </form>
     </div>
   );

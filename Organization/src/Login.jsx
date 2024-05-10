@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom";
+import './Login.css'; // Import CSS file
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,34 +17,43 @@ const Login = () => {
       (user) => user.username === username && user.password === password
     );
     if (user) {
-      navigate("/Navigation"); // Use navigate instead of history.push
+      navigate("/Navigation"); // Redirect to Navigation upon successful login
     } else {
       alert("Invalid username or password!");
     }
   };
 
+  const handleRegister = () => {
+    navigate("/register"); // Navigate to register page
+  };
+
   return (
-    <div>
-      <h2>Login Page</h2>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className="container">
+      <h2 className="heading">Login Page</h2>
+      <div className="form">
+        <div className="input-container">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="input"
+            required
+          />
+          <label className="label">Username</label>
+        </div>
+        <div className="input-container">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input"
+            required
+          />
+          <label className="label">Password</label>
+        </div>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+        <p className="register-text"> <span onClick={handleRegister} className="register-link">Register</span></p>
       </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={() => navigate("/register")}>Register</button>{" "}
-      {/* Use navigate here as well */}
     </div>
   );
 };

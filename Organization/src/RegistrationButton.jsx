@@ -9,7 +9,7 @@ function RegistrationButton() {
 
   return (
     <div>
-      <button onClick={handleRegistration}>Register</button>
+      <button onClick={handleRegistration} style={{ width: "20px", height: "30px", fontSize: "14px" }}>Register</button>
       {registrationStatus && <p>Registration is successful!</p>}
     </div>
   );

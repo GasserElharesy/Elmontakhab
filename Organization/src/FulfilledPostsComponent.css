@@ -1,0 +1,62 @@
+/* FulfilledPostsComponent.css */
+.login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-title,
+.login-content,
+.login-table th,
+.login-table td,
+.login-btn {
+  color: #0cc;
+}
+
+.login-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.login-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #0cc; /* Change border color */
+}
+
+.login-table th,
+.login-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #0cc; /* Change border color */
+}
+
+.login-table th {
+  background-color: #0cc; /* Change background color */
+}
+
+.login-btn {
+  background-color: transparent;
+  color: #0cc;
+  border: 1px solid #0cc; /* Change border color */
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #0aa; /* Change hover background color */
+  border-color: #0aa; /* Change hover border color */
+}
+
+/* White color for specific text */
+.login-table td.donor-name,
+.login-table td.donor-type,
+.login-table td.post-location,
+.login-table td.post-type,
+.login-table td.post-status,
+.login-table td.donation-date,
+.login-table td.donor-contact {
+  color: #fff;
+}

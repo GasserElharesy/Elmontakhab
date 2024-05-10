@@ -3,8 +3,8 @@ import DonationForm from "./DonationForm";
 import NotificationComponent from "./NotificationComponent";
 import FulfilledPostsComponent from "./FulfilledPostsComponent";
 import Home from "./Home";
-import "./Navigation.css"; // Import CSS file
-import Posts from "./posts"; // Correct import for Posts component
+import "./Navigation.css"; // CSS file content goes here\
+import Posts from "./posts"; // CSS file content goes here
 
 const Navigation = () => {
   const [currentPage, setCurrentPage] = useState("home");
@@ -55,33 +55,52 @@ const Navigation = () => {
       </button>{" "}
       {/* Toggle icon */}
       {isNavOpen && ( // Render navigation if isNavOpen is true
-        <nav>
-          <ul>
-            <li>
-              <button onClick={() => handleNavigation("home")}>Home</button>
+        <nav className="tm-header show">
+          <ul className="tm-header-wrapper">
+            <li className="tm-nav-item">
+              <button
+                className="tm-nav-link"
+                onClick={() => handleNavigation("home")}
+              >
+                Home
+              </button>
             </li>
-            <li>
-              <button onClick={() => handleNavigation("view my posts")}>
+            <li className="tm-nav-item">
+              <button
+                className="tm-nav-link"
+                onClick={() => handleNavigation("view my posts")}
+              >
                 View My Posts {/* Changed label to match the case */}
               </button>
             </li>
-            <li>
-              <button onClick={() => handleNavigation("donationForm")}>
+            <li className="tm-nav-item">
+              <button
+                className="tm-nav-link"
+                onClick={() => handleNavigation("donationForm")}
+              >
                 Request Donation
               </button>
             </li>
-            <li>
-              <button onClick={() => handleNavigation("notifications")}>
+            <li className="tm-nav-item">
+              <button
+                className="tm-nav-link"
+                onClick={() => handleNavigation("notifications")}
+              >
                 Receive Notifications
               </button>
             </li>
-            <li>
-              <button onClick={() => handleNavigation("fulfilledPosts")}>
+            <li className="tm-nav-item">
+              <button
+                className="tm-nav-link"
+                onClick={() => handleNavigation("fulfilledPosts")}
+              >
                 View Fulfilled Posts
               </button>
             </li>
-            <li>
-              <button onClick={handleLogout}>Logout</button>
+            <li className="tm-nav-item">
+              <button className="tm-nav-link" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </nav>

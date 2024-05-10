@@ -1,3 +1,5 @@
+import "./DonorDetailsComponent.css"; // Import CSS file
+
 const DonorDetailsComponent = () => {
   const fulfilledPosts = [
     {
@@ -31,7 +33,7 @@ const DonorDetailsComponent = () => {
   };
 
   return (
-    <div>
+    <div className="donor-details-container">
       <h2>Donor Details for Fulfilled Posts</h2>
       <table>
         <thead>
