@@ -8,10 +8,10 @@ function CheckoutPage({ claimedRequests }) {
 
   return (
     <div className="checkout-container">
-      <h1>Checkout</h1>
+      <h1 className="checkout-title">Checkout</h1>
 
       {claimedRequests.length === 0 ? (
-        <p>No claimed requests to display.</p>
+        <p className="checkout-empty">No claimed requests to display.</p>
       ) : (
         <ul className="checkout-list">
           {claimedRequests.map((request, index) => {
