@@ -2,6 +2,7 @@ import { useState } from "react";
 import { data } from "./data.js";
 import Request from "./Request.jsx";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 function RequestBrowserPage(props) {
   const [type, setType] = useState("ALL");

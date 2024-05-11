@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./style.css";
 
 function Request(props) {
   const [claimStatus, setClaimStatus] = useState(false);

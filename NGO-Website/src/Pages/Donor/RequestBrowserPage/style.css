@@ -1,0 +1,163 @@
+/* General Styles */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(242, 246, 245); /* Lightest shade for background */
+  color: #333; /* Dark grey for text */
+}
+
+/* Filter Bar */
+.filter-bar-container {
+  background-color: rgb(200, 218, 211); /* Second lightest shade */
+  padding: 20px;
+  border-bottom: 1px solid rgba(99, 112, 126, 0.3); /* Subtle border */
+  display: flex;
+  align-items: center;
+  position: sticky; /* Makes the filter bar sticky */
+  top: 0; /* Stick it to the top of the viewport */
+  z-index: 10; /* Ensure it stays on top of other content */
+}
+
+.filter-bar-container label {
+  margin-right: 10px;
+}
+
+.filter-bar-container select,
+.filter-bar-container input[type="text"] {
+  padding: 8px;
+  border: 1px solid rgba(99, 112, 126, 0.5); /* Subtle border */
+  border-radius: 4px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.filter-bar-container button {
+  background-color: rgb(99, 112, 126); /* Darkest shade for button */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-bar-container button:hover {
+  background-color: rgba(99, 112, 126, 0.8); /* Slightly darker on hover */
+}
+
+/* Request Container */
+.request-container {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(99, 112, 126, 0.15); /* Add a subtle box shadow */
+  margin-top: 20px; /* Add top margin to the list container to avoid overlap with the filter bar */
+}
+
+.request-type {
+  color: rgb(147, 181, 179); /* Accent color */
+}
+
+.request-tags li {
+  display: inline-block;
+  background-color: rgb(242, 246, 245); /* Lightest shade */
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.request-claim-section button {
+  background-color: rgb(147, 181, 179); /* Accent color */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.request-claim-section select {
+  padding: 8px;
+  border: 1px solid rgba(99, 112, 126, 0.5); /* Subtle border */
+  border-radius: 4px;
+}
+
+/* Checkout Container (Same style as request container) */
+/* Checkout Container */
+.checkout-container {
+  background-color: white; /* Background color */
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(99, 112, 126, 0.15); /* Subtle shadow */
+}
+
+.checkout-title {
+  /* Title */
+  color: rgb(147, 181, 179); /* Accent color */
+  margin-bottom: 20px;
+}
+
+.checkout-empty {
+  /* Empty message */
+  font-style: italic;
+  color: rgba(99, 112, 126, 0.7); /* Darker text for empty message */
+}
+
+.checkout-list {
+  list-style: none;
+  padding: 0;
+}
+
+.checkout-list li {
+  background-color: rgb(242, 246, 245); /* Lightest shade for list items */
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.request-details h2 {
+  /* Request type */
+  color: rgb(147, 181, 179);
+  margin-top: 0;
+}
+
+.request-details ul {
+  /* Tags list */
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.request-details ul li {
+  /* Tags */
+  display: inline-block;
+  background-color: rgb(200, 218, 211);
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.status {
+  /* Status message */
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Map Container (adjust as needed for your map component) */
+.map-container {
+  height: 200px;
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid rgba(99, 112, 126, 0.5);
+  border-radius: 4px;
+}
