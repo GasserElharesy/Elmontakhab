@@ -27,7 +27,7 @@ function CheckoutPage({ claimedRequests }) {
                       <li key={tagIndex}>{tag}</li>
                     ))}
                   </ul>
-                  <p>Quantity: {request.quantity} - {quantity}</p>
+                  <p>Quantity: {quantity}</p>
                   <p>Location: {location}</p>
                 </div>
                 <div className="status">Status: {checkoutStatus}</div>
