@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function RequestBrowserPage(props) {
   const [type, setType] = useState("ALL");
   const [selectedTag, setSelectedTag] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // New search term state
 
   const navigate = useNavigate();
 
@@ -61,14 +62,22 @@ function RequestBrowserPage(props) {
         ))}
       </select>
       <button onClick={handleDonate}>Donate Claimed</button>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {data
         .filter((item) => {
-          return (
-            // Return true if any conditions match
-            type === "ALL" || // Match all if type state is "ALL"
-            (item.type === type && // Match items only if type states matches
-              (!selectedTag || item.tags.includes(selectedTag)))
-          );
+          const matchesType = type === "ALL" || item.type === type;
+          const matchesTag = !selectedTag || item.tags.includes(selectedTag);
+          const matchesSearch =
+            !searchTerm ||
+            item.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+          return matchesType && matchesTag && matchesSearch;
         })
         .map((item, index) => (
           <Request key={index} {...item} onClaim={() => handleClaim(item)} />
