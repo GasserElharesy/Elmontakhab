@@ -33,6 +33,7 @@ function CheckoutPage({ claimedRequests }) {
                 <div className="map-container">
                   {/* Integrate your map component here using 'location' */}
                 </div>
+                {(request.type === 'BLOOD_DONATION')? <p>Please head to this location</p>: <p></p>}
               </li>
             );
           })}
