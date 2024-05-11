@@ -6,8 +6,11 @@ function Request(props) {
 
   const handleOnClaim = () => {
     setClaimStatus(!claimStatus);
-    props.onClaim(); // Call the function passed from the parent
+    props.onClaim(quantity); // Call the function passed from the parent
+  };
 
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value, 10)); // Update the quantity
   };
 
   return (
@@ -27,7 +30,7 @@ function Request(props) {
         name=""
         id=""
         value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
+        onChange={handleQuantityChange}
       >
         <option value={1}>Quantity x1</option>
         <option value={2}>Quantity x2</option>

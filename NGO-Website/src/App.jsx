@@ -6,6 +6,9 @@ import { useState } from "react";
 
 function App() {
   const [requests, setRequests] = useState([]);
+  const handleCheckOut = (claimedRequests) => {
+    setRequests(claimedRequests); // Update with the claimed requests array
+  };
   console.log(requests);
   return (
     <>
@@ -14,9 +17,7 @@ function App() {
           <Route
             path="/donate"
             element={
-              <RequestBrowserPage
-                onCheckOut={(r) => setRequests((requests) => [...requests, ...r])}
-              />
+              <RequestBrowserPage onCheckOut={handleCheckOut} /> // Pass function
             }
           />
           <Route

@@ -19,8 +19,8 @@ function RequestBrowserPage(props) {
 
   const [claimedRequests, setClaimedRequests] = useState([]); // Array to store claimed requests
 
-  const handleClaim = (request) => {
-    setClaimedRequests([...claimedRequests, request]);
+  const handleClaim = (request, quantity) => {
+    setClaimedRequests([...claimedRequests, { ...request, quantity }]); // Store with quantity
   };
 
   const handleDonate = () => {
@@ -80,7 +80,11 @@ function RequestBrowserPage(props) {
           return matchesType && matchesTag && matchesSearch;
         })
         .map((item, index) => (
-          <Request key={index} {...item} onClaim={() => handleClaim(item)} />
+          <Request
+            key={index}
+            {...item}
+            onClaim={(quantity) => handleClaim(item, quantity)}
+          />
         ))}
     </>
   );
