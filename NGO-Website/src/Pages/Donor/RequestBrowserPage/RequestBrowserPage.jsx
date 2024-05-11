@@ -44,7 +44,7 @@ function RequestBrowserPage(props) {
         <option value="MEDICAL_SUPPLIES">MEDICAL_SUPPLIES</option>
         <option value="FOOD">FOOD</option>
         <option value="SCHOOL_SUPPLIES">SCHOOL_SUPPLIES</option>
-        <option value="PROBONO">PROBONO</option>
+        <option value="TOYS">TOYS</option>
         <option value="CLOTHING">CLOTHING</option>
         <option value="BLOOD_DONATION">BLOOD_DONATION</option>
       </select>
