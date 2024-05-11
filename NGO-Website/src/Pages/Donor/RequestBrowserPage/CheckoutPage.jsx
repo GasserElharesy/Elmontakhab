@@ -28,7 +28,6 @@ function CheckoutPage({ claimedRequests }) {
                     ))}
                   </ul>
                   <p>Quantity: {quantity}</p>
-                  <p>Location: {location}</p>
                 </div>
                 <div className="status">Status: {checkoutStatus}</div>
                 <div className="map-container">
