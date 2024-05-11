@@ -14,6 +14,7 @@ function Request(props) {
     <>
       <h2>{props.type}</h2>
       <p>{props.description}</p>
+      <p>Location: {props.location}</p>
       <ul>
         {props.tags.map((tag, index) => (
           <li key={index}>{tag}</li>
