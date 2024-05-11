@@ -34,58 +34,62 @@ function RequestBrowserPage(props) {
 
   return (
     <>
-      <label htmlFor="type-select">TYPE: </label>
-      <select
-        name=""
-        id="type-select"
-        onChange={(e) => setType(e.target.value)}
-      >
-        <option value="ALL">-- Select Type --</option>
-        <option value="MEDICAL_SUPPLIES">MEDICAL_SUPPLIES</option>
-        <option value="FOOD">FOOD</option>
-        <option value="SCHOOL_SUPPLIES">SCHOOL_SUPPLIES</option>
-        <option value="TOYS">TOYS</option>
-        <option value="CLOTHING">CLOTHING</option>
-        <option value="BLOOD_DONATION">BLOOD_DONATION</option>
-      </select>
-      <label htmlFor="tag-select">TAG: </label>
-      <select
-        name=""
-        id="tag-select"
-        onChange={(e) => setSelectedTag(e.target.value)}
-      >
-        <option value="">-- Select a Tag --</option>
-        {allTags.map((tag, index) => (
-          <option key={index} value={tag}>
-            {tag}
-          </option>
-        ))}
-      </select>
-      <button onClick={handleDonate}>Donate Claimed</button>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      {data
-        .filter((item) => {
-          const matchesType = type === "ALL" || item.type === type;
-          const matchesTag = !selectedTag || item.tags.includes(selectedTag);
-          const matchesSearch =
-            !searchTerm ||
-            item.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchTerm.toLowerCase());
+      <div className="filter-bar-container">
+        <label htmlFor="type-select">TYPE: </label>
+        <select
+          name=""
+          id="type-select"
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="ALL">-- Select Type --</option>
+          <option value="MEDICAL_SUPPLIES">MEDICAL_SUPPLIES</option>
+          <option value="FOOD">FOOD</option>
+          <option value="SCHOOL_SUPPLIES">SCHOOL_SUPPLIES</option>
+          <option value="TOYS">TOYS</option>
+          <option value="CLOTHING">CLOTHING</option>
+          <option value="BLOOD_DONATION">BLOOD_DONATION</option>
+        </select>
+        <label htmlFor="tag-select">TAG: </label>
+        <select
+          name=""
+          id="tag-select"
+          onChange={(e) => setSelectedTag(e.target.value)}
+        >
+          <option value="">-- Select a Tag --</option>
+          {allTags.map((tag, index) => (
+            <option key={index} value={tag}>
+              {tag}
+            </option>
+          ))}
+        </select>
+        <button onClick={handleDonate}>Donate Claimed</button>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div className="requests-list-container">
+        {data
+          .filter((item) => {
+            const matchesType = type === "ALL" || item.type === type;
+            const matchesTag = !selectedTag || item.tags.includes(selectedTag);
+            const matchesSearch =
+              !searchTerm ||
+              item.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              item.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-          return matchesType && matchesTag && matchesSearch;
-        })
-        .map((item, index) => (
-          <Request
-            key={index}
-            {...item}
-            onClaim={(quantity) => handleClaim(item, quantity)}
-          />
-        ))}
+            return matchesType && matchesTag && matchesSearch;
+          })
+          .map((item, index) => (
+            <Request
+              key={index}
+              {...item}
+              onClaim={(quantity) => handleClaim(item, quantity)}
+            />
+          ))}
+      </div>
     </>
   );
 }
