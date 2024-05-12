@@ -1,73 +1,48 @@
-.login-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+.post {
+  max-width: 350px;
+  background: #f8f9fd;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+  border-radius: 20px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px auto;
 }
 
-.login-title {
+.post h3 {
   text-align: center;
+  font-weight: 900;
+  font-size: 20px;
+  color: #0cc;
   margin-bottom: 20px;
 }
 
-.login-content {
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+.post p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-.login-subtitle {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.login-list {
-  list-style: none;
-  padding: 0;
-}
-
-.login-item {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.login-item:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.login-btn {
-  background-color: #0CC;
-  color: white;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.login-btn:hover {
-  background-color: #09b6b6;
-}
-
-.login-form {
-  margin-top: 20px;
-}
-
-.login-input {
+.post button {
+  display: block;
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  font-weight: bold;
+  background: #0cc;
+  color: white;
+  padding: 15px;
+  margin: 10px auto 0;
+  border: none;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  transition: all 0.2s ease-in-out;
 }
 
-.login-input:focus {
-  outline: none;
-  border-color: #0CC;
-  box-shadow: 0px 0px 5px 0px rgba(0, 204, 204, 0.5);
+.post button:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
+
+.post button:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
 }

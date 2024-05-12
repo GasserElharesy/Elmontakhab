@@ -1,0 +1,176 @@
+/* Admin Dashboard Navigation */
+
+/* Menu Button Style */
+.admin-menu-button {
+  background: linear-gradient(135deg, #0cc, #09a); /* Gradient background */
+  color: #fff; /* Text color */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s ease; /* Faster transition on hover */
+}
+
+.admin-menu-button:hover {
+  background: linear-gradient(
+    135deg,
+    #09a,
+    #0cc
+  ); /* Change gradient background on hover */
+}
+
+/* Table Style */
+.admin-table-container {
+  position: fixed;
+  top: 70px; /* Adjusted top position to leave space for navigation container */
+  left: 400px; /* Adjusted left position to start after the sidebar */
+  right: 0; /* Take the remaining space to the right */
+  bottom: 0; /* Take the remaining space to the bottom */
+  z-index: 999;
+  background: linear-gradient(
+    180deg,
+    #f9f9f9,
+    #e5e5e5
+  ); /* Gradient background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-y: auto;
+  animation: admin-slideIn 0.5s ease; /* Faster animation */
+}
+
+/* Slide in animation */
+@keyframes admin-slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    left: 50%;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    left: 50%;
+  }
+}
+
+/* Table Hover Effect */
+.admin-table-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.admin-table-container th,
+.admin-table-container td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  color: #333; /* Text color */
+}
+
+.admin-table-container th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.admin-table-container tbody tr:hover {
+  background-color: #f0f0f0; /* Hover background color */
+}
+
+/* Table Scrollbar Style */
+.admin-table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-table-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.admin-table-container::-webkit-scrollbar-track {
+  background-color: #f9f9f9;
+}
+
+/* Navigation Container */
+.admin-navigation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(180deg, #0cc, #09a); /* Gradient background */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-navigation-container h1 {
+  margin: 0;
+  color: #fff; /* Text color */
+}
+
+.admin-navigation-container button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  color: #fff; /* Text color */
+}
+
+/* Sidebar */
+.admin-tm-header {
+  background: linear-gradient(180deg, #09a, #0cc); /* Gradient background */
+  color: #fff; /* Text color */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  width: 400px;
+  overflow-y: visible;
+  padding: 20px;
+}
+
+.admin-tm-nav {
+  margin-bottom: 100px;
+}
+
+.admin-tm-nav-item {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.admin-tm-nav-link {
+  color: #fff; /* Text color */
+  background-color: transparent;
+  height: 40px;
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  transition: background-color 0.2s ease; /* Faster transition on hover */
+}
+
+.admin-tm-nav-item:hover .admin-tm-nav-link,
+.admin-tm-nav-item.active .admin-tm-nav-link {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Transparent background color on hover */
+  border: 1px solid white;
+}
+
+/* Adjust margin for main content area */
+.admin-main-content {
+  margin-top: 50px;
+}

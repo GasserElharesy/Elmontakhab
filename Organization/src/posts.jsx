@@ -1,180 +1,175 @@
-import { useState } from 'react';
-import './posts.css'; // Import the CSS file
+import React, { useState } from "react";
+import "./posts.css"; // Import the CSS file
 
-function DonationManager() {
-  // Hardcoded data for demonstration
-  const [donations, setDonations] = useState([
+function DonationManagement() {
+  const [posts, setPosts] = useState([
     {
       id: 1,
-      category: 'School Supplies',
-      details: 'Books for school children',
-      quantity: 50,
-      postDate: '2024-05-10',
+      category: "School Supplies",
+      description: "Books for school children",
+      postDate: "2024-05-10",
+      quantity: 100,
       fulfilled: false,
       approved: true,
-      donor: null
+      donor: null,
     },
     {
       id: 2,
-      category: 'Clothes',
-      details: 'We need clothes for the homeless.',
-      quantity: 20,
-      postDate: '2024-05-09',
+      category: "Clothes",
+      description: "We need clothes for the homeless.",
+      postDate: "2024-05-09",
+      quantity: 50,
       fulfilled: true,
       approved: true,
       donor: {
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        phoneNumber: '123-456-7890',
-        address: '123 Main St, Anytown, USA'
-      }
+        name: "John Doe",
+        email: "johndoe@example.com",
+        phoneNumber: "123-456-7890",
+        address: "123 Main St, Anytown, USA",
+      },
     },
     {
       id: 3,
-      category: 'Food',
-      details: 'Food for homeless shelter',
-      quantity: 100,
-      postDate: '2024-05-08',
+      category: "Books",
+      description: "Educational books for ages 10-15",
+      postDate: "2024-05-08",
+      quantity: 75,
       fulfilled: false,
-      approved: false,
-      donor: null
-    }
+      approved: true,
+      donor: null,
+    },
   ]);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editedPost, setEditedPost] = useState({});
 
-  const [selectedDonation, setSelectedDonation] = useState({});
-  const [updatedDetails, setUpdatedDetails] = useState({
-    id: null,
-    category: '',
-    details: '',
-    quantity: 0,
-    postDate: '',
-    fulfilled: false,
-    approved: false,
-    donor: null
-  });
-
-  // Function to delete donation post
-  const handleDeletePost = (donationId) => {
-    // Delete the selected donation
-    setDonations(donations.filter(donation => donation.id !== donationId));
-    // Clear selected donation
-    setSelectedDonation({});
+  const handleUpdatePost = (id, data) => {
+    setPosts(
+      posts.map((post) => (post.id === id ? { ...post, ...data } : post))
+    );
+    setEditMode(false);
+    setSelectedPost(null);
+    setEditedPost({});
   };
 
-  // Function to handle updating a donation
-  const handleUpdateDonation = () => {
-    // Update the donation with the updated details
-    const updatedDonations = donations.map(donation => {
-      if (donation.id === updatedDetails.id) {
-        return { ...updatedDetails };
-      }
-      return donation;
-    });
-    setDonations(updatedDonations);
-    setUpdatedDetails({
-      id: null,
-      category: '',
-      details: '',
-      quantity: 0,
-      postDate: '',
-      fulfilled: false,
-      approved: false,
-      donor: null
-    });
-    setSelectedDonation({}); // Close the update form
+  const handleDeletePost = (id) => {
+    setPosts(posts.filter((post) => post.id !== id));
+  };
+
+  const handleEditClick = (post) => {
+    setSelectedPost(post);
+    setEditedPost({ ...post }); // Copy the post data to editedPost
+    setEditMode(true);
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setEditedPost({ ...editedPost, [name]: value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setEditedPost({ ...editedPost, [name]: checked });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleUpdatePost(selectedPost.id, editedPost);
   };
 
   return (
-    <div className="donation-manager-container">
-      <h2 className="donation-manager-title">Donation Manager</h2>
-      <div className="donation-manager-content">
-        {/* Donation posts list */}
-        <div className="donation-posts">
-          <h3 className="donation-posts-title">Donation Posts</h3>
-          <ul className="donation-posts-list">
-            {donations.map(donation => (
-              <li key={donation.id} className="donation-post">
-                <div className="donation-post-header">
-                  <strong>Category:</strong> {donation.category} <br />
-                  <strong>Details:</strong> {donation.details} <br />
-                  <strong>Quantity:</strong> {donation.quantity} <br />
-                  <strong>Post Date:</strong> {donation.postDate} <br />
-                  <strong>Approved:</strong> {donation.approved ? "Yes" : "No"} <br />
-                  {donation.fulfilled && (
-                    <>
-                      <strong>Fulfilled:</strong> Yes <br />
-                      {donation.donor && (
-                        <>
-                          <strong>Donor:</strong> {donation.donor.name} <br />
-                          <strong>Email:</strong> {donation.donor.email} <br />
-                          <strong>Phone Number:</strong> {donation.donor.phoneNumber} <br />
-                          <strong>Address:</strong> {donation.donor.address} <br />
-                        </>
-                      )}
-                    </>
-                  )}
+    <div className="container">
+      <h2 className="heading">Donation Posts</h2>
+      {posts.map((post) => (
+        <div key={post.id} className="post">
+          {selectedPost === post && editMode ? (
+            <form onSubmit={handleSubmit} className="form">
+              <label>
+                Post Date:
+                <input
+                  type="date"
+                  name="postDate"
+                  value={editedPost.postDate || ""}
+                  onChange={handleFormChange}
+                  className="input"
+                />
+              </label>
+              <label>
+                Category:
+                <input
+                  type="text"
+                  name="category"
+                  value={editedPost.category || ""}
+                  onChange={handleFormChange}
+                  className="input"
+                />
+              </label>
+              <label>
+                Description:
+                <textarea
+                  name="description"
+                  value={editedPost.description || ""}
+                  onChange={handleFormChange}
+                  className="input"
+                />
+              </label>
+              <label>
+                Quantity:
+                <input
+                  type="number"
+                  name="quantity"
+                  value={editedPost.quantity || ""}
+                  onChange={handleFormChange}
+                  className="input"
+                />
+              </label>
+              <label>
+                Fulfilled:
+                <input
+                  type="checkbox"
+                  name="fulfilled"
+                  checked={editedPost.fulfilled || false}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+              <label>
+                Approved:
+                <input
+                  type="checkbox"
+                  name="approved"
+                  checked={editedPost.approved || false}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+              <button type="submit" className="login-button">
+                Save Changes
+              </button>
+            </form>
+          ) : (
+            <React.Fragment>
+              <h3>{post.category}</h3>
+              <p>Description: {post.description}</p>
+              <p>Post Date: {post.postDate}</p>
+              <p>Quantity: {post.quantity}</p>
+              <p>Fulfilled: {post.fulfilled ? "Yes" : "No"}</p>
+              <p>Approved: {post.approved ? "Yes" : "No"}</p>
+              <button onClick={() => handleEditClick(post)}>Edit</button>
+              <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+              {post.donor && (
+                <div className="donor-details">
+                  <h4>Donor Details</h4>
+                  <p>Name: {post.donor.name}</p>
+                  <p>Email: {post.donor.email}</p>
+                  <p>Phone Number: {post.donor.phoneNumber}</p>
+                  <p>Address: {post.donor.address}</p>
                 </div>
-                <div className="donation-post-buttons">
-                  {/* Button to update donation */}
-                  <button onClick={() => setUpdatedDetails({...donation})} className="donation-btn">Edit</button>
-                  {/* Delete button for all donations */}
-                  <button onClick={() => handleDeletePost(donation.id)} className="donation-btn">Delete</button>
-                </div>
-              </li>
-            ))}
-          </ul>
+              )}
+            </React.Fragment>
+          )}
         </div>
-
-        {/* Selected donation post details or update form */}
-        {selectedDonation.id !== undefined && (
-          <div className="donation-update-form">
-            <h3 className="donation-update-title">Update Donation</h3>
-            <div className="donation-update-info">
-              <input
-                type="text"
-                placeholder="Category"
-                value={updatedDetails.category}
-                onChange={(e) => setUpdatedDetails({ ...updatedDetails, category: e.target.value })}
-                className="donation-update-input"
-              />
-              <textarea
-                placeholder="Details"
-                value={updatedDetails.details}
-                onChange={(e) => setUpdatedDetails({ ...updatedDetails, details: e.target.value })}
-                className="donation-update-input"
-              />
-              <input
-                type="number"
-                placeholder="Quantity"
-                value={updatedDetails.quantity}
-                onChange={(e) => setUpdatedDetails({ ...updatedDetails, quantity: parseInt(e.target.value) })}
-                className="donation-update-input"
-              />
-              <input
-                type="text"
-                placeholder="Post Date"
-                value={updatedDetails.postDate}
-                onChange={(e) => setUpdatedDetails({ ...updatedDetails, postDate: e.target.value })}
-                className="donation-update-input"
-              />
-              <select
-                value={updatedDetails.approved}
-                onChange={(e) => setUpdatedDetails({ ...updatedDetails, approved: e.target.value === "true" })}
-                className="donation-update-input"
-              >
-                <option value={true}>Approved</option>
-                <option value={false}>Not Approved</option>
-              </select>
-            </div>
-            <div className="donation-update-buttons">
-              <button onClick={handleUpdateDonation} className="donation-btn">Update</button>
-              <button onClick={() => setSelectedDonation({})} className="donation-btn">Cancel</button>
-            </div>
-          </div>
-        )}
-      </div>
+      ))}
     </div>
   );
 }
 
-export default DonationManager;
+export default DonationManagement;

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import DonationForm from "./DonationForm";
 import NotificationComponent from "./NotificationComponent";
-import FulfilledPostsComponent from "./FulfilledPostsComponent";
 import Home from "./Home";
 import "./Navigation.css"; // CSS file content goes here\
 import Posts from "./posts"; // CSS file content goes here
@@ -20,8 +19,7 @@ const Navigation = () => {
 
       case "notifications":
         return <NotificationComponent />;
-      case "fulfilledPosts":
-        return <FulfilledPostsComponent />;
+      
       case "home":
       default:
         return <Home />;
@@ -89,14 +87,7 @@ const Navigation = () => {
                 Receive Notifications
               </button>
             </li>
-            <li className="tm-nav-item">
-              <button
-                className="tm-nav-link"
-                onClick={() => handleNavigation("fulfilledPosts")}
-              >
-                View Fulfilled Posts
-              </button>
-            </li>
+            
             <li className="tm-nav-item">
               <button className="tm-nav-link" onClick={handleLogout}>
                 Logout

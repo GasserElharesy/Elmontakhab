@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./OrgRegPage.css"; // Import CSS file
-
+import MapComponent from "./map";
+import Login from "./Login";
 // GenderPicker component for selecting gender
+
 const GenderPicker = () => {
   const [gender, setGender] = useState("");
 
@@ -31,6 +33,7 @@ const FileUpload = () => {
 };
 
 const OrgRegPg = () => {
+  const [showPage, setShowPage] = useState(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -43,6 +46,10 @@ const OrgRegPg = () => {
     organizationArea: "",
     organizationGovernate: "",
   });
+  const redirectToLogin = () => {
+    //file
+    setShowPage("done");
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -141,13 +148,7 @@ const OrgRegPg = () => {
         </div>
         <div>
           <label htmlFor="organizationAddress">Organization Address:</label>
-          <input
-            type="text"
-            id="organizationAddress"
-            name="organizationAddress"
-            value={formData.organizationAddress}
-            onChange={handleChange}
-          />
+          <MapComponent />
         </div>
         <div>
           <label htmlFor="organizationArea">Organization Area:</label>
@@ -159,6 +160,7 @@ const OrgRegPg = () => {
             onChange={handleChange}
           />
         </div>
+        {showPage === "done" && <Login />}
         <div>
           <label htmlFor="organizationGovernate">Organization Governate:</label>
           <input
@@ -175,6 +177,8 @@ const OrgRegPg = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <br />
+      <button onClick={redirectToLogin}>Back to Login</button>{" "}
     </div>
   );
 };
