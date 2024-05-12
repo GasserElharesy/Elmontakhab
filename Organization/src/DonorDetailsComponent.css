@@ -1,0 +1,53 @@
+/* DonorDetailsComponent CSS */
+
+.donor-details-container {
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Limit maximum width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px;
+    background-color: #ffffff; /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border-radius: 10px; /* Add border radius */
+  }
+  
+  .donor-details-container h2 {
+    text-align: center; /* Center the heading */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Header background color */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+  }
+  
+  tr:hover {
+    background-color: #eaeaea; /* Hover row background color */
+  }
+  
+  td button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    background-color: #3498db; /* Button background color */
+    color: #ffffff; /* Button text color */
+    cursor: pointer;
+    width: 10%;
+  }
+  
+  td button:hover {
+    background-color: #2980b9; /* Hover button background color */
+  }
+  
