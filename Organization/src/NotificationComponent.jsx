@@ -31,14 +31,19 @@ const ChosenDonationComponent = () => {
 
   // Your provided donation post
   const donationPost = {
-    id: 1,
-    category: "School Supplies",
-    description: "Books for school children",
-    postDate: "2024-05-10",
-    quantity: 100,
-    fulfilled: false,
-    approved: true,
-    donor: null 
+    id: 2,
+      category: "Clothes",
+      description: "We need clothes for the homeless.",
+      postDate: "2024-05-09",
+      quantity: 50,
+      fulfilled: true,
+      approved: true,
+      donor: {
+        name: "John Doe",
+        email: "johndoe@example.com",
+        phoneNumber: "123-456-7890",
+        address: "123 Main St, Anytown, USA",
+      },
   };
 
   return (
