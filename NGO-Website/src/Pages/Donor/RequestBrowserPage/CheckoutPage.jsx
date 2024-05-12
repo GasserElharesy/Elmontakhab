@@ -7,6 +7,31 @@ function CheckoutPage({ claimedRequests }) {
   const [selectedDates, setSelectedDates] = useState({}); // Store selected dates for each request
   const [ETAs, setETAs] = useState({}); // Store ETA for each request
 
+  const [confirmedRequests, setConfirmedRequests] = useState({}); // Track confirmed requests
+
+  const handleConfirmDropoff = (requestId) => {
+    // TODO: Implement your confirmation logic here
+    // e.g., send the selected date and time to the backend,
+    // update the checkoutStatus, etc.
+
+    setConfirmedRequests((prevConfirmed) => ({
+      ...prevConfirmed,
+      [requestId]: true,
+    }));
+
+    console.log(
+      `Drop-off confirmed for request ID ${requestId} on ${selectedDates[requestId]}`
+    );
+  };
+
+  const handleRescheduleDropoff = (requestId) => {
+    // TODO: Implement your reschedule logic here
+    setConfirmedRequests((prevConfirmed) => ({
+      ...prevConfirmed,
+      [requestId]: false,
+    }));
+  };
+
   useEffect(() => {
     // ... Your existing useEffect logic to potentially change checkoutStatus ...
 
@@ -75,20 +100,48 @@ function CheckoutPage({ claimedRequests }) {
                 {request.type !== "BLOOD_DONATION" &&
                   request.type !== "VOLUNTEER" && (
                     <div className="dropoff-scheduling">
-                      <label htmlFor={`dropoff-date-${request.id}`}>
-                        Schedule Drop-off:
-                      </label>
-                      <input
-                        type="date"
-                        id={`dropoff-date-${request.id}`}
-                        value={selectedDates[request.id] || ""}
-                        onChange={(e) =>
-                          handleDateChange(request.id, e.target.value)
-                        }
-                      />
-                      <p>
-                        Estimated Time of Arrival: {ETAs[request.id] || "N/A"}
-                      </p>
+                      {confirmedRequests[request.id] ? (
+                        // If confirmed, show date and reschedule button
+                        <div>
+                          <p>
+                            Drop-off scheduled for: {selectedDates[request.id]}
+                            <br />
+                            Estimated Time of Arrival:{" "}
+                            {ETAs[request.id] || "N/A"}
+                          </p>
+                          <button
+                            className="confirm-button"
+                            onClick={() => handleRescheduleDropoff(request.id)}
+                          >
+                            Reschedule Drop-off
+                          </button>
+                        </div>
+                      ) : (
+                        // If not confirmed, show scheduling inputs
+                        <>
+                          <label htmlFor={`dropoff-date-${request.id}`}>
+                            Schedule Drop-off:
+                          </label>
+                          <input
+                            type="date"
+                            id={`dropoff-date-${request.id}`}
+                            value={selectedDates[request.id] || ""}
+                            onChange={(e) =>
+                              handleDateChange(request.id, e.target.value)
+                            }
+                          />
+                          <p>
+                            Estimated Time of Arrival:{" "}
+                            {ETAs[request.id] || "N/A"}
+                          </p>
+                          <button
+                            className="confirm-button"
+                            onClick={() => handleConfirmDropoff(request.id)}
+                          >
+                            Confirm Drop-off
+                          </button>
+                        </>
+                      )}
                     </div>
                   )}
               </li>
