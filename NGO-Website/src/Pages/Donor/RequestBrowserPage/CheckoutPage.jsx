@@ -4,7 +4,40 @@ function CheckoutPage({ claimedRequests }) {
   // Receive claimed requests as prop
   const [checkoutStatus, setCheckoutStatus] = useState("PENDING");
 
-  // ... useEffect logic to potentially change checkoutStatus ...
+  const [selectedDates, setSelectedDates] = useState({}); // Store selected dates for each request
+  const [ETAs, setETAs] = useState({}); // Store ETA for each request
+
+  useEffect(() => {
+    // ... Your existing useEffect logic to potentially change checkoutStatus ...
+
+    // Logic to fetch/calculate ETA based on location and potentially other factors
+    // (You'll need to replace this comment with your actual ETA calculation logic)
+    // For example:
+    claimedRequests.forEach((request) => {
+      if (request.type !== "BLOOD_DONATION" && request.type !== "VOLUNTEER") {
+        // Only for deliveries
+        setETAs((prevETAs) => ({
+          ...prevETAs,
+          [request.id]: "Calculating...", // Initial ETA, replace with your logic
+        }));
+
+        // Replace with your actual ETA calculation logic (e.g., using a distance API)
+        setTimeout(() => {
+          setETAs((prevETAs) => ({
+            ...prevETAs,
+            [request.id]: "Approx. 30 mins", // Replace with calculated ETA
+          }));
+        }, 1000); // Simulating ETA calculation delay
+      }
+    });
+  }, [claimedRequests]); // Update ETAs when claimedRequests change
+
+  const handleDateChange = (requestId, date) => {
+    setSelectedDates((prevDates) => ({
+      ...prevDates,
+      [requestId]: date,
+    }));
+  };
 
   return (
     <div className="checkout-container">
@@ -33,7 +66,31 @@ function CheckoutPage({ claimedRequests }) {
                 <div className="map-container">
                   {/* Integrate your map component here using 'location' */}
                 </div>
-                {(request.type === 'BLOOD_DONATION' || request.type === 'VOLUNTEER')? <p>Please head to this location.</p>: <p>The delivery personnel will arrive at this location.</p>}
+                {request.type === "BLOOD_DONATION" ||
+                request.type === "VOLUNTEER" ? (
+                  <p>Please head to this location.</p>
+                ) : (
+                  <p>The delivery personnel will arrive at this location.</p>
+                )}
+                {request.type !== "BLOOD_DONATION" &&
+                  request.type !== "VOLUNTEER" && (
+                    <div className="dropoff-scheduling">
+                      <label htmlFor={`dropoff-date-${request.id}`}>
+                        Schedule Drop-off:
+                      </label>
+                      <input
+                        type="date"
+                        id={`dropoff-date-${request.id}`}
+                        value={selectedDates[request.id] || ""}
+                        onChange={(e) =>
+                          handleDateChange(request.id, e.target.value)
+                        }
+                      />
+                      <p>
+                        Estimated Time of Arrival: {ETAs[request.id] || "N/A"}
+                      </p>
+                    </div>
+                  )}
               </li>
             );
           })}
