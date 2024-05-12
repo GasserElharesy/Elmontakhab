@@ -28,7 +28,7 @@ function Request(props) {
           <button onClick={handleOnClaim}>
             {claimStatus ? "Claimed!" : "Claim"}
           </button>
-          <select
+          {(props.type === 'VOLUNTEER' || props.type === 'BLOOD_DONATION')? <></> : <select
             name=""
             id=""
             value={quantity}
@@ -40,7 +40,7 @@ function Request(props) {
             <option value={4}>Quantity x4</option>
             <option value={5}>Quantity x5</option>
             <option value={6}>Quantity x6</option>
-          </select>
+          </select>}
         </div>
       </div>
     </>
