@@ -206,3 +206,8 @@ body {
 .confirm-button:hover {
   background-color: rgba(147, 181, 179, 0.8); /* Slightly darker on hover */
 }
+
+.dropoff-scheduling p {
+  /* Styles for the date/ETA display */
+  font-weight: bold;
+}

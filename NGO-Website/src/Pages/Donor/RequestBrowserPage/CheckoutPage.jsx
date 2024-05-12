@@ -106,7 +106,7 @@ function CheckoutPage({ claimedRequests }) {
                           <p>
                             Drop-off scheduled for: {selectedDates[request.id]}
                             <br />
-                            Estimated Time of Arrival:{" "}
+                            Estimated Time of Arrival:{""}
                             {ETAs[request.id] || "N/A"}
                           </p>
                           <button
